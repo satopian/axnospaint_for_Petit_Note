@@ -35,11 +35,11 @@
         </tbody>
     </table>
     <br>
-    <u>投稿情報の入力</u><br>
+    <!-- <u>投稿情報の入力</u><br> -->
     <div>
         <span id="axp_post_span_message"></span>
         <table id="axp_post_table_postForm">
-            <tr>
+            <!-- <tr>
                 <td class="axpc_post_postFormTd">投稿者名</td>
                 <td>
                     <input id="axp_post_text_name" type="text" maxlength="32" size="40" value="" />
@@ -65,7 +65,7 @@
                         ウォッチリストに登録
                     </label>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td colspan="2" style="text-align: center;">
                     <button id="axp_post_button_upload" class="axpc_MSG axpc_button axpc_button_width260"

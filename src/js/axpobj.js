@@ -26,8 +26,8 @@ export class AXPObj {
     // AXNOS Paint全体で使用する定数。（システム単位で完全に独立している定数は、システム毎に定義する）
     CONST = {
         APP_TITLE: 'AXNOS Paint',
-        CANVAS_X_MAX: 600,
-        CANVAS_Y_MAX: 600,
+        CANVAS_X_MAX: 800,
+        CANVAS_Y_MAX: 800,
         CANVAS_X_MIN: 8,
         CANVAS_Y_MIN: 8,
         CANVAS_X_DEFAULT: 317,
@@ -1276,8 +1276,8 @@ export class AXPObj {
                 let elemRefId = document.getElementById('axp_post_a_referenceOekakiId');
                 if (this.oekaki_id !== null) {
                     elemRef.textContent = 'もとの絵あるよ';
-                    elemRefId.textContent = this.oekaki_id + '.png';
-                    elemRefId.href = this.oekakiURL + this.oekaki_id + '.png';
+                    elemRefId.textContent = this.oekaki_id;
+                    elemRefId.href = this.oekakiURL + this.oekaki_id;
                 } else {
                     elemRef.textContent = 'なし（いちから描いた）';
                     elemRefId.textContent = '';
@@ -1866,7 +1866,8 @@ export class AXPObj {
     getURLParms() {
         const url = new URL(window.location.href);
         let params = url.searchParams;
-        this.oekaki_id = params.get('oekaki_id');
+        // this.oekaki_id = params.get('oekaki_id');
+        this.oekaki_id = this.oekaki_id || null;
         this.oekaki_width = params.get('oekaki_width');
         this.oekaki_height = params.get('oekaki_height');
 
@@ -1903,10 +1904,10 @@ export class AXPObj {
                 this.y_size = this.CONST.CANVAS_Y_DEFAULT;
             }
 
-            let isDraftLoaded = false;
+			let isDraftLoaded = false;
             // 基にしてお絵カキコする場合の判定
             if (this.oekaki_id) {
-                let imageload_src = this.oekakiURL + this.oekaki_id + '.png';
+                let imageload_src = this.oekakiURL + this.oekaki_id ;
                 // テキスト表示（※初期化前なので、this.msg()はまだ使用できない）
                 document.getElementById('axp_footer_div_message').textContent = `[${this.oekaki_id}.png]を読み込みしています...`;
                 // 基にしてお絵カキコする画像のロード

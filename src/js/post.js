@@ -62,19 +62,19 @@ export class PostSystem {
         document.getElementById('axp_post_span_imageSize').textContent = `横:${x} 縦:${y}`;
     }
     startEvent() {
-        document.getElementById('axp_post_text_title').oninput = (e) => {
-            let text = e.target.value;
-            document.getElementById('axp_post_div_thumbnailTitle').textContent = text;
-        }
+        // document.getElementById('axp_post_text_title').oninput = (e) => {
+        //     let text = e.target.value;
+        //     document.getElementById('axp_post_div_thumbnailTitle').textContent = text;
+        // }
         // ボタン：お絵カキコする！
         document.getElementById("axp_post_button_upload").onclick = (e) => {
 
             // 本文が一文字以上入力されていなければ処理を中断してメッセージを表示する
-            let message = document.getElementById('axp_post_textarea_message').value.trim();
-            if (message.length < 1) {
-                document.getElementById('axp_post_span_message').textContent = '※本文を入力してください';
-                return;
-            }
+            // let message = document.getElementById('axp_post_textarea_message').value.trim();
+            // if (message.length < 1) {
+            //     document.getElementById('axp_post_span_message').textContent = '※本文を入力してください';
+            //     return;
+            // }
 
             // ボタン表示変更（投稿中）
             document.getElementById("axp_post_button_upload").textContent = '投稿中です………';
@@ -89,11 +89,11 @@ export class PostSystem {
 
             // 送信データオブジェクト
             let objPostData = {
-                strName: document.getElementById('axp_post_text_name').value.trim(),
-                strTitle: document.getElementById('axp_post_text_title').value.trim(),
-                strMessage: message,
-                strWatchList: (document.getElementById('axp_post_checkbox_watchList').checked) ? 't' : '',
-                oekaki_id: this.axpObj.oekaki_id,
+                // strName: document.getElementById('axp_post_text_name').value.trim(),
+                // strTitle: document.getElementById('axp_post_text_title').value.trim(),
+                // strMessage: message,
+                // strWatchList: (document.getElementById('axp_post_checkbox_watchList').checked) ? 't' : '',
+                // oekaki_id: this.axpObj.oekaki_id,
                 strEncodeImg: strEncodeImg,
             };
 

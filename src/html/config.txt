@@ -25,17 +25,17 @@
                     <div style="display: flex;">
                         <div class="axpc_number axpc_MSG" data-msg="@CFG0300">
                             <label>横
-                                <input id="axp_config_number_oekakiWidth" type="number" min="8" max="600" value="317">
+                                <input id="axp_config_number_oekakiWidth" type="number" min="8" max="800" value="317">
                             </label>×
                         </div>
                         <div class="axpc_number axpc_MSG" data-msg="@CFG0301">
                             <label>縦
-                                <input id="axp_config_number_oekakiHeight" type="number" min="8" max="600"
+                                <input id="axp_config_number_oekakiHeight" type="number" min="8" max="800"
                                     value="317">[px]
                             </label>
                         </div>
                     </div>
-                    (※最小8×8 ～ 最大600×600)<br>
+                    (※最小8×8 ～ 最大800×800)<br>
                     [履歴]<br>
                     <ul id="axp_config_ul_canvasSizeHistory" class="axpc_MSG" data-msg="@CFG0016">
                     </ul>
