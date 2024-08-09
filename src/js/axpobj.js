@@ -1272,17 +1272,17 @@ export class AXPObj {
                 document.getElementById("axp_post_button_upload").disabled = false;
 
                 // 基にしてお絵カキコ
-                let elemRef = document.getElementById('axp_post_span_referenceOekakiType');
-                let elemRefId = document.getElementById('axp_post_a_referenceOekakiId');
-                if (this.oekaki_id !== null) {
-                    elemRef.textContent = 'もとの絵あるよ';
-                    elemRefId.textContent = this.oekaki_id;
-                    elemRefId.href = this.oekakiURL + this.oekaki_id;
-                } else {
-                    elemRef.textContent = 'なし（いちから描いた）';
-                    elemRefId.textContent = '';
-                    elemRefId.href = '';
-                }
+                // let elemRef = document.getElementById('axp_post_span_referenceOekakiType');
+                // let elemRefId = document.getElementById('axp_post_a_referenceOekakiId');
+                // if (this.oekaki_id !== null) {
+                //     elemRef.textContent = 'もとの絵あるよ';
+                //     elemRefId.textContent = this.oekaki_id;
+                //     elemRefId.href = this.oekakiURL + this.oekaki_id;
+                // } else {
+                //     elemRef.textContent = 'なし（いちから描いた）';
+                //     elemRefId.textContent = '';
+                //     elemRefId.href = '';
+                // }
                 break;
         }
         //console.log('main select:', idx, this.isCanvasOpen);

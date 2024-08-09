@@ -17,12 +17,12 @@
 
     <table id="axp_post_table_information">
         <tbody>
-            <tr>
+            <!-- <tr>
                 <td title="">基にしたお絵カキコ</td>
                 <td><span id="axp_post_span_referenceOekakiType"></span>
                     <a href="" id="axp_post_a_referenceOekakiId" target="_blank" rel="noopener"></a>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td title="">お絵カキコのサイズ</td>
                 <td><span id="axp_post_span_imageSize"></span></td>
