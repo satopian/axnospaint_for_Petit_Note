@@ -1244,12 +1244,14 @@ export class LayerSystem extends ToolWindow {
         // 表示領域をクリア
 		this.CANVAS.backscreen_trans_ctx.beginPath();
         this.CANVAS.backscreen_trans_ctx.clearRect(0, 0, this.x_size, this.y_size);
-
 		if (!this.axpObj.assistToolSystem.getIsTransparent()){//背景透過ではない時に
+			this.CANVAS.backscreen_trans_ctx.save();
 			//白背景を合成結果に含める
 			this.CANVAS.backscreen_trans_ctx.globalAlpha = 1;
 			this.CANVAS.backscreen_trans_ctx.fillStyle = '#ffffff';
 			this.CANVAS.backscreen_trans_ctx.fillRect(0, 0, this.x_size, this.y_size);
+			// 既定の状態を復元
+			this.CANVAS.backscreen_trans_ctx.restore();
 		}
         // 全レイヤー走査（※下層レイヤーから描画するため逆順）
         // 処理済みindex（クリッピング処理で子を先行して合成する場合がある時、スキップ判定に使用する）
