@@ -621,13 +621,13 @@ export class LayerSystem extends ToolWindow {
         }
     }
     // 全レイヤー合成済みのcanvas
-    getCanvas() {
-        if (this.axpObj.assistToolSystem.getIsTransparent()) {
-            return this.CANVAS.backscreen_trans;
-        } else {
-            return this.CANVAS.backscreen_white;
-        }
-    }
+    // getCanvas() {
+    //     if (this.axpObj.assistToolSystem.getIsTransparent()) {
+    //         return this.CANVAS.backscreen_trans;
+    //     } else {
+    //         return this.CANVAS.backscreen_white;
+    //     }
+    // }
     getCurrentLayerImage() {
         return this.layerObj[this.getLayerIndex(this.currentLayer.dataset.id)].image;
     }
