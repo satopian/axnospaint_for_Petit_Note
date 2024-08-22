@@ -1,7 +1,7 @@
 /* ボタン共通 */
 .axpc_button {
     /* font-family: monospace, sans-serif; */
-    font-family: sans-serif;
+    font-family: "MS Gothic",monospace,sans-serif;
     cursor: pointer;
     height: 30px;
     padding: 0px 0px;
