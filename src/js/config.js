@@ -438,10 +438,10 @@ export class ConfigSystem {
         document.getElementById('axp_config_button_changeCanvasSize').onpointerdown = (e) => {
 
             // 基にしてお絵カキコ使用時は、仕様として変更不可とする。
-            if (this.axpObj.oekaki_id !== null) {
-                alert('「基にしてお絵カキコ」したキャンバスのサイズ変更はできません。');
-                return;
-            }
+            // if (this.axpObj.oekaki_id !== null) {
+            //     alert('「基にしてお絵カキコ」したキャンバスのサイズ変更はできません。');
+            //     return;
+            // }
 
             // キャンバスサイズの範囲チェック
             let x = this.axpObj.checkCanvasSize_x(document.getElementById('axp_config_number_oekakiWidth').value);
