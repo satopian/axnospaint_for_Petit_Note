@@ -2,9 +2,6 @@
   "name": "axnospaint",
   "version": "2.2.0",
   "description": "お絵かき掲示板向けペイントツール",
-  "config": {
-    "date": "[2024/08/03版]"
-  },
   "scripts": {
     "dev-server": "webpack-dev-server",
     "build": "webpack",
@@ -18,10 +15,11 @@
     "css-loader": "^7.1.1",
     "cssnano": "^7.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "json-loader": "^0.5.7",
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.6",
-    "webpack": "^5.94.0",
+    "webpack": "^5.91.0",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^5.0.4"
   }

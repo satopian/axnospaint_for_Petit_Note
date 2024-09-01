@@ -32,6 +32,11 @@ module.exports = {
                 type: 'asset/source',
             },
             {
+                test: /\.json$/,
+                loader: 'json-loader',
+                type: 'javascript/auto'
+            },
+            {
                 test: /\.png/,
                 type: 'asset/inline'
             }
@@ -69,7 +74,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             PACKAGE_VERSION: `"${require('./package.json').version}"`,
-            PACKAGE_DATE: `"${require('./package.json').config.date}"`,
+            PACKAGE_DATE: `"${new Date().toISOString()}"`,
         }),
     ],
 };

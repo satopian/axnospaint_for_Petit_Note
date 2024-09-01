@@ -96,7 +96,7 @@ export class LayerSystem extends ToolWindow {
         this.createHTML(
             'axp_layer',
             'LAY',
-            'レイヤー',
+            this.axpObj._('@WINDOW.LAYER'),
             'axpc_icon_window_layer',
             htmldata
         );
@@ -361,7 +361,7 @@ export class LayerSystem extends ToolWindow {
             }
             return resultName;
         }
-        return checkDuplicateLayerName('レイヤー');
+        return checkDuplicateLayerName(this.axpObj._('@LAYER.NEWLAYER_TEMPLATE'));
     }
     // 重複したレイヤー名を書き換え（カラータグ用） 引数depthは指定不要
     replaceDuplicateLayerName(name, depth = 1) {
@@ -621,13 +621,13 @@ export class LayerSystem extends ToolWindow {
         }
     }
     // 全レイヤー合成済みのcanvas
-    // getCanvas() {
-    //     if (this.axpObj.assistToolSystem.getIsTransparent()) {
-    //         return this.CANVAS.backscreen_trans;
-    //     } else {
-    //         return this.CANVAS.backscreen_white;
-    //     }
-    // }
+    getCanvas() {
+        if (this.axpObj.assistToolSystem.getIsTransparent()) {
+            return this.CANVAS.backscreen_trans;
+        } else {
+            return this.CANVAS.backscreen_white;
+        }
+    }
     getCurrentLayerImage() {
         return this.layerObj[this.getLayerIndex(this.currentLayer.dataset.id)].image;
     }
@@ -1137,10 +1137,8 @@ export class LayerSystem extends ToolWindow {
         data.cloneName = util.insertClone(target, util.index(target));
         target.style.width = `${targetW}px`;
         target.classList.add('axpc_onGRAB');
-        // イベントリスナー解除用
-        const controller = new AbortController();
         // ドラッグ中
-        window.addEventListener('pointermove', (e) => {
+        const onPointerMove = (e) => {
             //console.log('move');
             const target = data.target;
             const pageX = e.pageX;
@@ -1150,9 +1148,9 @@ export class LayerSystem extends ToolWindow {
             target.style.left = `${targetPosL}px`;
             target.style.top = `${targetPosT}px`;
             util.swap(target);
-        }, { signal: controller.signal });
+        }
         // ドロップ
-        window.addEventListener('pointerup', (e) => {
+        const onPointerUp = (e) => {
             //console.log('up');
             //console.log('e:', e.currentTarget);
             const target = data.target;
@@ -1163,7 +1161,8 @@ export class LayerSystem extends ToolWindow {
             target.removeAttribute('style');
             target.classList.remove('axpc_onGRAB');
             // イベントリスナー解除
-            controller.abort();
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerup', onPointerUp);
 
             // 操作終了後、実際に入替処理が行われたどうか判定する
             var elem = document.querySelectorAll('#axp_layer_ul_layerBox>li');
@@ -1197,7 +1196,9 @@ export class LayerSystem extends ToolWindow {
                 this.updateLayerIndex();
                 this.updateCanvas();
             }
-        }, { signal: controller.signal });
+        }
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', onPointerUp);
     }
     // カレントレイヤー更新
     setCurrentLayer(targetElement) {
@@ -1242,7 +1243,7 @@ export class LayerSystem extends ToolWindow {
         let ctx = this.axpObj.CANVAS.main_ctx;
         //console.log('ここで描画', this.x_size, this.y_size);
         // 表示領域をクリア
-		this.CANVAS.backscreen_trans_ctx.beginPath();
+        this.CANVAS.backscreen_trans_ctx.beginPath();
         this.CANVAS.backscreen_trans_ctx.clearRect(0, 0, this.x_size, this.y_size);
 		if (!this.axpObj.assistToolSystem.getIsTransparent()){//背景透過ではない時に
 			this.CANVAS.backscreen_trans_ctx.save();
