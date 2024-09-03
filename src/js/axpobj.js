@@ -110,7 +110,11 @@ export class AXPObj {
     // 使用ブラウザ
     browser;
 
+    // 起動オプションで指定される変数
     checkSameBBS;
+    restrictDraftCanvasResizing;
+    restrictPost;
+    expansionTab;
     option_height;
     option_width;
 
@@ -194,6 +198,41 @@ export class AXPObj {
 
     // 使用する追加辞書
     additionalDictionaryJSON;
+
+    // 投稿フォームカスタマイズ（デフォルト値）
+    postForm = {
+        // 投稿フォーム
+        input: {
+            isDisplay: true,
+            // 投稿者名
+            strName: {
+                isDisplay: true,
+                isInputRequired: false,
+                maxLength: 32,
+            },
+            // タイトル
+            strTitle: {
+                isDisplay: true,
+                isInputRequired: false,
+                maxLength: 32,
+            },
+            // 本文
+            strMessage: {
+                isDisplay: true,
+                isInputRequired: false,
+                maxLength: 1024,
+            },
+            // ウォッチリスト登録
+            strWatchList: {
+                isDisplay: true,
+            },
+        },
+        // 注意事項
+        notice: {
+            isDisplay: true,
+            // 文章はユーザー辞書を使用して書き換えが可能 
+        },
+    }
 
     constructor(additionalDictionaryJSON) {
         this.additionalDictionaryJSON = additionalDictionaryJSON;
@@ -1328,7 +1367,7 @@ export class AXPObj {
                 // if (this.draftImageFile !== null) {
                 //     elemRefId.textContent = `${this._('@COMMON.DRAW_BASED')}:${getFileNameFromURL(this.draftImageFile)}`;
                 // } else if (this.oekaki_id !== null) {
-                //     elemRefId.textContent = `${this._('@COMMON.DRAW_BASED')}:${this.oekaki_id}`;
+                //     elemRefId.textContent = `${this._('@COMMON.DRAW_BASED')}:${this.oekaki_id}.png`;
                 // } else {
                 //     elemRefId.textContent = `${this._('@COMMON.DRAW_NEW')}`;
                 // }
