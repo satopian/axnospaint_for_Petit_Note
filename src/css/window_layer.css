@@ -129,7 +129,6 @@
 	border: solid 1px #000;
 	/* background: #777; */
 	/* 透明を表す市松模様 */
-	--layer_canvas_cellThumb_color: #ccc;
 	--layer_canvas_cellThumb_color1: #ccc;
 	--layer_canvas_cellThumb_color2: #fff;
 	--layer_canvas_cellThumb_size: 10;
