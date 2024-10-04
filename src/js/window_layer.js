@@ -1245,15 +1245,15 @@ export class LayerSystem extends ToolWindow {
         // 表示領域をクリア
         this.CANVAS.backscreen_trans_ctx.beginPath();
         this.CANVAS.backscreen_trans_ctx.clearRect(0, 0, this.x_size, this.y_size);
-		if (!this.axpObj.assistToolSystem.getIsTransparent()){//背景透過ではない時に
-			this.CANVAS.backscreen_trans_ctx.save();
-			//白背景を合成結果に含める
-			this.CANVAS.backscreen_trans_ctx.globalAlpha = 1;
-			this.CANVAS.backscreen_trans_ctx.fillStyle = '#ffffff';
-			this.CANVAS.backscreen_trans_ctx.fillRect(0, 0, this.x_size, this.y_size);
-			// 既定の状態を復元
-			this.CANVAS.backscreen_trans_ctx.restore();
-		}
+    if (!this.axpObj.assistToolSystem.getIsTransparent()){//背景透過ではない時に
+      this.CANVAS.backscreen_trans_ctx.save();
+      //白背景を合成結果に含める
+      this.CANVAS.backscreen_trans_ctx.globalAlpha = 1;
+      this.CANVAS.backscreen_trans_ctx.fillStyle = '#ffffff';
+      this.CANVAS.backscreen_trans_ctx.fillRect(0, 0, this.x_size, this.y_size);
+      // 既定の状態を復元
+      this.CANVAS.backscreen_trans_ctx.restore();
+    }
         // 全レイヤー走査（※下層レイヤーから描画するため逆順）
         // 処理済みindex（クリッピング処理で子を先行して合成する場合がある時、スキップ判定に使用する）
         let skipIdx = this.layerObj.length - 1;
@@ -1273,12 +1273,23 @@ export class LayerSystem extends ToolWindow {
             // レイヤー毎のサムネイル描画
             const clearRect = Math.max(this.axpObj.x_size, this.axpObj.y_size);
             this.CANVAS.thumbnail_ctx[idx].clearRect(0, 0, clearRect, clearRect);
+            
+            // 画像を少しずらして2回描画
+            const offset = 1; // ずらす距離
+            
+            // 1回目の描画（少し左上にずらす）
+            this.CANVAS.thumbnail_ctx[idx].drawImage(
+                tmp_ctx.canvas,
+                this.axpObj.ctx_map_shift_x - offset,
+                this.axpObj.ctx_map_shift_y - offset
+            );
+            
+            // 2回目の描画（元の位置）
             this.CANVAS.thumbnail_ctx[idx].drawImage(
                 tmp_ctx.canvas,
                 this.axpObj.ctx_map_shift_x,
                 this.axpObj.ctx_map_shift_y
             );
-
             // クリッピング合成により描画済みの子レイヤーの場合、処理をスキップする
             if (skipIdx < idx) {
                 //console.log('skip', skipIdx, '<', idx);
