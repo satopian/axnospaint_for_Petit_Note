@@ -131,7 +131,7 @@
 	/* 透明を表す市松模様 */
 	--layer_canvas_cellThumb_color1: #ccc;
 	--layer_canvas_cellThumb_color2: #fff;
-	--layer_canvas_cellThumb_size: 10;
+	--layer_canvas_cellThumb_size: 12;
 	background-image: repeating-conic-gradient(from 0deg, var(--layer_canvas_cellThumb_color1) 0deg 90deg, var(--layer_canvas_cellThumb_color2) 90deg 180deg);
 	background-size: calc(100% / var(--layer_canvas_cellThumb_size)) calc(100% / var(--layer_canvas_cellThumb_size));
 }
