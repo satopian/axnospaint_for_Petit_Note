@@ -88,8 +88,8 @@ export class LayerSystem extends ToolWindow {
     // 初期ウィンドウ位置
     getDefaultPosition() {
         return {
-            left: 10,
-            top: 340,
+            left: 0,
+            top: 400,
         }
     }
     init() {
@@ -152,7 +152,7 @@ export class LayerSystem extends ToolWindow {
             elem_layerbox.removeChild(elem_layerbox.firstChild);
         }
     }
-    //　イベント受付開始
+    // イベント受付開始
     startEvent() {
         // セレクトボックス：レイヤー合成モード
         document.getElementById('axp_layer_select_blendMode').addEventListener('change', (e) => {
@@ -190,7 +190,7 @@ export class LayerSystem extends ToolWindow {
             this.axpObj.closeSubwindow('axp_renamelayer');
         }
         // サブウィンドウ
-        document.getElementById('axp_renamelayer').addEventListener('click', (e) => {
+        document.getElementById('axp_renamelayer').addEventListener('click', () => {
             cancelRename();
         });
         document.querySelector('#axp_renamelayer>div').addEventListener('click', (e) => {
@@ -198,7 +198,7 @@ export class LayerSystem extends ToolWindow {
             e.stopPropagation();
         });
         // キャンセルボタン
-        document.getElementById('axp_renamelayer_button_close').addEventListener('click', (e) => {
+        document.getElementById('axp_renamelayer_button_close').addEventListener('click', () => {
             cancelRename();
         });
 
@@ -251,12 +251,12 @@ export class LayerSystem extends ToolWindow {
             }
         });
         // テキスト入力時
-        document.getElementById('axp_renamelayer_text_newLayerName').addEventListener('input', (e) => {
+        document.getElementById('axp_renamelayer_text_newLayerName').addEventListener('input', () => {
             // 決定ボタン有効化
             document.getElementById('axp_renamelayer_button_confirm').dataset.enabled = 'true';
         });
         // 色解除
-        document.getElementById('axp_renamelayer_button_colorReset').addEventListener('click', (e) => {
+        document.getElementById('axp_renamelayer_button_colorReset').addEventListener('click', () => {
             this.setTag(-1);
             updateTagColor(this.getTagBackground(-1));
             // レイヤーに付与した色を解除しました。
@@ -271,7 +271,7 @@ export class LayerSystem extends ToolWindow {
             const newButton = elementColorTagButton.appendChild(
                 this.createTagHTML(this.colorTagList[idx])
             );
-            newButton.addEventListener('click', (e) => {
+            newButton.addEventListener('click', () => {
                 const name = this.colorTagList[idx].name;
                 // 登録されている単語を新しい名前とする
                 // 既に同じ名前が使用されている場合、(2)、(3)と番号をつける
@@ -287,7 +287,7 @@ export class LayerSystem extends ToolWindow {
                 this.axpObj.msg('@INF4005', newName);
                 this.axpObj.closeSubwindow('axp_renamelayer');
             });
-            newButton.addEventListener('pointerenter', (e) => {
+            newButton.addEventListener('pointerenter', () => {
                 // 登録された名前に変更し、色を付与します。
                 this.axpObj.msg('@AXP4012');
             });
@@ -458,7 +458,7 @@ export class LayerSystem extends ToolWindow {
 
         // 対象レイヤーを検出（リドゥ処理の場合、選択しているレイヤーが対象とは限らない為、IDで特定が必要）
         var idx_delete;
-        for (var i = 0; i < elements.length; i++) {
+        for (let i = 0; i < elements.length; i++) {
             if (elements[i].dataset.id == id) {
                 target = elements[i];
                 idx_delete = i;
@@ -486,7 +486,7 @@ export class LayerSystem extends ToolWindow {
         elements = document.querySelectorAll('#axp_layer_ul_layerBox>li');
         // 選択中のレイヤーを検出
         var found = false;
-        for (var i = 0; i < elements.length; i++) {
+        for (let i = 0; i < elements.length; i++) {
             if (elements[i].dataset.selected == 'true') {
                 found = true;
                 break;
@@ -907,7 +907,7 @@ export class LayerSystem extends ToolWindow {
         // レイヤー表示状態の切り替え
         newDivEyeIcon.addEventListener('pointerenter', (e) => {
             // ポインターが進入した時
-            var msgtext = e.target.classList.contains('axpc_icon_eyeON') ? '表示' : '非表示';
+            let msgtext = e.target.classList.contains('axpc_icon_eyeON') ? '表示' : '非表示';
             // レイヤーの表示状態を切り替えます。(現在の状態:%1)
             this.axpObj.msg('@AXP4000', '表示状態', msgtext);
 
@@ -927,7 +927,7 @@ export class LayerSystem extends ToolWindow {
                             e.target.classList.add('axpc_icon_eyeON');
                             this.layerObj[this.getLayerIndex(e.target.dataset.id)].checked = true;
                         }
-                        var msgtext = e.target.classList.contains('axpc_icon_eyeON') ? '表示' : '非表示';
+                        msgtext = e.target.classList.contains('axpc_icon_eyeON') ? '表示' : '非表示';
                         // レイヤーの%1を切り替えました。(現在の状態:%2)
                         this.axpObj.msg('@INF4006', '表示状態', msgtext);
                         this.updateCanvas();
@@ -1106,7 +1106,7 @@ export class LayerSystem extends ToolWindow {
         });
         return newLayer;
     }
-    openRenameLayerWindow(e) {
+    openRenameLayerWindow() {
         // サブウィンドウオープン
         this.axpObj.openSubwindow('axp_renamelayer', this.currentLayer);
 
@@ -1150,7 +1150,7 @@ export class LayerSystem extends ToolWindow {
             util.swap(target);
         }
         // ドロップ
-        const onPointerUp = (e) => {
+        const onPointerUp = () => {
             //console.log('up');
             //console.log('e:', e.currentTarget);
             const target = data.target;
@@ -1172,7 +1172,7 @@ export class LayerSystem extends ToolWindow {
             if (idx !== data.idx_source) {
                 // レイヤー配列に反映
                 //console.log("画面表示：移動元", data.idx_source, "=>移動先", idx);
-                //console.log("配列　　：移動元", elem.length - 1 - data.idx_source, "=>移動先", elem.length - 1 - idx);
+                //console.log("配列：移動元", elem.length - 1 - data.idx_source, "=>移動先", elem.length - 1 - idx);
                 /*
                 // 配列の並び順と画面表示の並び順が逆順の仕様の時の置換ロジック（没）
                 var moveObj = this.layerObj.splice(elem.length - 1 - data.idx_source, 1);
@@ -1245,16 +1245,16 @@ export class LayerSystem extends ToolWindow {
         // 表示領域をクリア
         this.CANVAS.backscreen_trans_ctx.beginPath();
         this.CANVAS.backscreen_trans_ctx.clearRect(0, 0, this.x_size, this.y_size);
-    if (!this.axpObj.assistToolSystem.getIsTransparent()){//背景透過ではない時に
-      this.CANVAS.backscreen_trans_ctx.save();
-      //白背景を合成結果に含める
-      this.CANVAS.backscreen_trans_ctx.globalAlpha = 1;
-      this.CANVAS.backscreen_trans_ctx.fillStyle = '#ffffff';
-      this.CANVAS.backscreen_trans_ctx.fillRect(0, 0, this.x_size, this.y_size);
-      // 既定の状態を復元
-      this.CANVAS.backscreen_trans_ctx.restore();
-    }
-        // 全レイヤー走査（※下層レイヤーから描画するため逆順）
+        if (!this.axpObj.assistToolSystem.getIsTransparent()){//背景透過ではない時に
+            this.CANVAS.backscreen_trans_ctx.save();
+            //白背景を合成結果に含める
+            this.CANVAS.backscreen_trans_ctx.globalAlpha = 1;
+            this.CANVAS.backscreen_trans_ctx.fillStyle = '#ffffff';
+            this.CANVAS.backscreen_trans_ctx.fillRect(0, 0, this.x_size, this.y_size);
+            // 既定の状態を復元
+            this.CANVAS.backscreen_trans_ctx.restore();
+          }
+              // 全レイヤー走査（※下層レイヤーから描画するため逆順）
         // 処理済みindex（クリッピング処理で子を先行して合成する場合がある時、スキップ判定に使用する）
         let skipIdx = this.layerObj.length - 1;
         for (let idx = this.layerObj.length - 1; idx >= 0; idx--) {
@@ -1273,7 +1273,7 @@ export class LayerSystem extends ToolWindow {
             // レイヤー毎のサムネイル描画
             const clearRect = Math.max(this.axpObj.x_size, this.axpObj.y_size);
             this.CANVAS.thumbnail_ctx[idx].clearRect(0, 0, clearRect, clearRect);
-            
+
             // 画像を少しずらして2回描画
             const offset = 1; // ずらす距離
             
@@ -1290,6 +1290,7 @@ export class LayerSystem extends ToolWindow {
                 this.axpObj.ctx_map_shift_x,
                 this.axpObj.ctx_map_shift_y
             );
+
             // クリッピング合成により描画済みの子レイヤーの場合、処理をスキップする
             if (skipIdx < idx) {
                 //console.log('skip', skipIdx, '<', idx);
