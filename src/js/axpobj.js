@@ -2164,7 +2164,8 @@ export class AXPObj {
             // ユーザー設定が復元された後のペンツールの再描画
             this.penSystem.changePenMode();
             // 初回起動かつモバイル端末の場合、単一ウィンドウモードを強制設定
-            if (this.ENV.isFirstLaunch && this.ENV.isMobileWidth) {
+            const isMultiTouchSupported = ((typeof navigator.maxTouchPoints === "number") && navigator.maxTouchPoints > 2);
+            if (this.ENV.isFirstLaunch && this.ENV.isMobileWidth && isMultiTouchSupported) {
                 document.getElementById('axp_config_checkbox_singleWindowMode').checked = true;
                 this.configSystem.saveConfig('CHECK_axp_config_checkbox_singleWindowMode', true);
                 alert('* 初回起動設定 *\n画面幅が600px未満のため、単一ウィンドウモードに設定しました。[設定]-[ツールウィンドウ]で変更が可能です。');
