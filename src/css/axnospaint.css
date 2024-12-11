@@ -115,7 +115,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    z-index: 6000;
+    z-index: 10000;
   }
 
   #axp_main_checkbox_hamburger~div>div {
