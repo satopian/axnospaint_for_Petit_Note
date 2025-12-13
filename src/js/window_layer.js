@@ -42,6 +42,10 @@ export class Layerdata {
         this.name = layerData.name; // レイヤー名
         this.tag = layerData.tag; // カラータグ
         this.image = layerData.image; // 画像データ（imageData）
+        // draw更新予約フラグ true の間は追加予約を発行しない（フレーム単位で間引く）
+        this.rafPendingDraw = false;
+        // サムネイル更新予約フラグ true の間は追加予約を発行しない（フレーム単位で間引く）
+        this.rafPendingThumbnail = false;
     }
 }
 
@@ -1426,9 +1430,23 @@ export class LayerSystem extends ToolWindow {
 
     }
     updateCanvas() {
-        // キャンバス更新が影響する表示を一括処理
-        this.draw();
-        this.drawThumbnail();
+
+        // ====== draw（本体）をフレーム単位で間引く ======
+        if (!this.rafPendingDraw) {
+            this.rafPendingDraw = true;
+            requestAnimationFrame(() => {
+                this.draw();                      // 本体は毎フレーム1回は保証
+                this.rafPendingDraw = false;       // 次のフレーム予約に解放
+            });
+        }
+
+        if (!this.rafPendingThumbnail) {
+                this.rafPendingThumbnail = true;
+            requestAnimationFrame(() => {
+                this.drawThumbnail();
+                this.rafPendingThumbnail = false;
+            });
+        }
     }
     // 画像をダウンロード
     downloadImage() {
