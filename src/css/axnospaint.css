@@ -43,7 +43,7 @@ body {
 #axp_main_div_tab {
   display: flex;
   align-items: flex-end;
-  min-height: 30px;
+  flex-basis: 32px;
 }
 
 /* 見出し枠 */
@@ -114,7 +114,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    z-index: 10000;
+    z-index: 6000;
   }
 
   #axp_main_checkbox_hamburger ~ div > div {
@@ -127,7 +127,7 @@ body {
 
   #axp_main_checkbox_hamburger:checked ~ div > div {
     border: 1px solid #333;
-    height: 2.5em;
+    height: 3em;
     padding: 0.5em;
     transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
   }
@@ -267,6 +267,7 @@ body {
   flex-grow: 1;
   flex-direction: column;
   overflow: hidden;
+  height: 100%;
 }
 
 /* タブ：設定 */
@@ -299,6 +300,5 @@ body {
 }
 
 #axp_footer_div_icon {
-  margin-left: 8px;
-  margin-top: 2px;
+  margin: auto 0 auto 8px;
 }

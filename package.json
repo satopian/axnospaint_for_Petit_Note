@@ -3,7 +3,7 @@
   "version": "2.4.0",
   "description": "お絵かき掲示板向けペイントツール",
   "scripts": {
-    "dev-server": "webpack-dev-server",
+    "dev": "webpack-dev-server",
     "build": "webpack",
     "prod": "cross-env NODE_ENV=prod webpack --config webpack.prod.js",
     "prod-demo": "cross-env NODE_ENV=demo webpack --config webpack.prod.js",
