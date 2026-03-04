@@ -1455,26 +1455,21 @@ export class LayerSystem extends ToolWindow {
       }
       tmp_ctx.putImageData(item.image, 0, 0);
 
-      // レイヤー毎のサムネイル描画
-      const clearRect = Math.max(this.axpObj.x_size, this.axpObj.y_size);
-      this.CANVAS.thumbnail_ctx[idx].clearRect(0, 0, clearRect, clearRect);
-
-      // 画像を少しずらして2回描画
-      const offset = 1; // ずらす距離
-
-      // 1回目の描画（少し左上にずらす）
-      this.CANVAS.thumbnail_ctx[idx].drawImage(
-        tmp_ctx.canvas,
-        this.axpObj.ctx_map_shift_x - offset,
-        this.axpObj.ctx_map_shift_y - offset,
-      );
-
-      // 2回目の描画（元の位置）
-      this.CANVAS.thumbnail_ctx[idx].drawImage(
-        tmp_ctx.canvas,
-        this.axpObj.ctx_map_shift_x,
-        this.axpObj.ctx_map_shift_y,
-      );
+      if (idx === this.getLayerIndex(this.currentLayer.dataset.id)) {
+        console.log(
+          'サムネイル描画：カレントレイヤー',
+          idx,
+          this.layerObj[idx].name,
+        );
+        // レイヤー毎のサムネイル描画
+        const clearRect = Math.max(this.axpObj.x_size, this.axpObj.y_size);
+        this.CANVAS.thumbnail_ctx[idx].clearRect(0, 0, clearRect, clearRect);
+        this.CANVAS.thumbnail_ctx[idx].drawImage(
+          tmp_ctx.canvas,
+          this.axpObj.ctx_map_shift_x,
+          this.axpObj.ctx_map_shift_y,
+        );
+      }
 
       // クリッピング合成により描画済みの子レイヤーの場合、処理をスキップする
       if (skipIdx < idx) {
