@@ -1455,16 +1455,12 @@ export class LayerSystem extends ToolWindow {
       } else {
         tmp_ctx = this.CANVAS.tmp_ctx;
       }
-      //ペン以外の時は全サムネイルを描画する
       tmp_ctx.putImageData(item.image, 0, 0);
 
-      // フレームカウント用の変数を外に持っておく
-      this.frameCnt = (this.frameCnt || 0) + 1;
-
-      // ...ループ内...
       let isCurrentLayer =
         idx === this.getLayerIndex(this.currentLayer.dataset.id);
 
+      //ペン以外の時は全サムネイルを描画する
       if (!pen || (penEnd && isCurrentLayer)) {
         console.log(
           'サムネイル描画：カレントレイヤー',
@@ -1647,6 +1643,7 @@ export class LayerSystem extends ToolWindow {
     const penEnd = updateOptions.penEnd || false;
 
     this.draw(updateOptions);
+
     if (!pen || penEnd) {
       this.drawThumbnail(updateOptions);
     }
