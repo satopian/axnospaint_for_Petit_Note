@@ -238,7 +238,8 @@ export class PenObj {
         this.axpObj.y_size,
       ),
     );
-    this.axpObj.layerSystem.updateCanvas();
+    //ペンによるアップデートキャンバスの時はペンであることを引数で指定する
+    this.axpObj.layerSystem.updateCanvas({ pen: true });
   }
   // 描画終了 - 共通処理
   end_common() {

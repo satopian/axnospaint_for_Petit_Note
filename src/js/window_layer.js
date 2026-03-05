@@ -1423,7 +1423,8 @@ export class LayerSystem extends ToolWindow {
       this.layerObj[i].index = i;
     }
   }
-  draw() {
+  draw(updateOptions = {}) {
+    const pen = updateOptions.pen || false;
     let ctx = this.axpObj.CANVAS.main_ctx;
     //console.log('ここで描画', this.x_size, this.y_size);
     // 表示領域をクリア
@@ -1454,8 +1455,8 @@ export class LayerSystem extends ToolWindow {
         tmp_ctx = this.CANVAS.tmp_ctx;
       }
       tmp_ctx.putImageData(item.image, 0, 0);
-
-      if (idx === this.getLayerIndex(this.currentLayer.dataset.id)) {
+      //ペン以外の時は全サムネイルを描画する
+      if (!pen || idx === this.getLayerIndex(this.currentLayer.dataset.id)) {
         console.log(
           'サムネイル描画：カレントレイヤー',
           idx,
@@ -1632,9 +1633,11 @@ export class LayerSystem extends ToolWindow {
       );
     }
   }
-  updateCanvas() {
+  updateCanvas(updateOptions = {}) {
+    //const pen = updateOptions.pen || false;
     // キャンバス更新が影響する表示を一括処理
-    this.draw();
+
+    this.draw(updateOptions);
     this.drawThumbnail();
   }
   // 画像をダウンロード
