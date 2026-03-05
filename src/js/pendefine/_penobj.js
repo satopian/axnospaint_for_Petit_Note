@@ -279,6 +279,7 @@ export class PenObj {
           this.axpObj.saveSystem.autoSave();
         }
       }
+      this.axpObj.layerSystem.updateCanvas({ pen: true, penEnd: true });
       // 描画フラグリセット
       this.reset_modeflag();
     }
