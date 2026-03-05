@@ -1645,7 +1645,13 @@ export class LayerSystem extends ToolWindow {
     this.draw(updateOptions);
 
     if (!pen || penEnd) {
-      this.drawThumbnail(updateOptions);
+      if (penEnd) {
+        setTimeout(() => {
+          this.drawThumbnail();
+        }, 100);
+      } else {
+        this.drawThumbnail();
+      }
     }
   }
   // 画像をダウンロード
