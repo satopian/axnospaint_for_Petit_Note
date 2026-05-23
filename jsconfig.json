@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "allowJs": true,
+    "checkJs": true, // JSファイルのチェックを有効化
+    "noImplicitAny": false, // 型が不明な場合にanyを許容する
+  },
+  "exclude": [
+      "node_modules",
+      "**/node_modules/*",
+      ".git"
+    ]
+}

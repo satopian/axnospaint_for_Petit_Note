@@ -16,7 +16,7 @@ const createAlertHTML = (message, useCancel = false) => {
   alertObj.id = 'axp_alert_div_alertBox';
   //※恐らくIEのための個別処理
   //if (document.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
-  alertObj.style.visiblity = 'visible';
+  alertObj.style.visibility = 'visible';
 
   let h1 = alertObj.appendChild(document.createElement('h1'));
   h1.appendChild(document.createTextNode(ALERT_TITLE));
