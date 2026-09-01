@@ -29,7 +29,7 @@
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.110.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.1.0"
+    "webpack-dev-server": "^6.0.0"
   },
   "overrides": {
     "serialize-javascript": "7.0.3"
